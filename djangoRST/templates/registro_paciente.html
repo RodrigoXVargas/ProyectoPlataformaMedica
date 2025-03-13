@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'registro_paciente' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+</form>

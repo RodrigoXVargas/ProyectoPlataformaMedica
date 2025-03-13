@@ -1,0 +1,11 @@
+# Para descargar dependencias, ejecutar:    pip install -r requirements.txt
+# Añadir acá todas las dependencias instaladas. EL '==' hace referencia a la versión, si no se pone, se instala la última versión
+# Comando para conocer las dependencias instaladas:     pip freeze
+
+django==5.0.1
+psycopg2-binary==2.9.9 # Base de datos postgres
+djangorestframework==3.14.0
+pillow==10.1.0 # Imagenes
+djangorestframework-simplejwt==3.0.0 # Autenticación JWT
+supabase==2.3.1 # Base de datos en remoto
+python-decouple==3.8

@@ -1,0 +1,2 @@
+OPCIONES_MINUTOS_APERTURA = ((str(m).zfill(2), str(m).zfill(2)) for m in range(0, 61, 5))  # Minutos en intervalos de 5
+OPCIONES_MINUTOS_CIERRE   = ((str(m).zfill(2), str(m).zfill(2)) for m in range(0, 61, 5))

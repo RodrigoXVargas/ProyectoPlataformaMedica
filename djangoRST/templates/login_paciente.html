@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Pacientes</title>
+</head>
+<body>
+    {% csrf_token %}
+    {% if error_message %}
+        <div style="color: red;">{{ error_message }}</div>
+    {% endif %}
+    <h2>Login</h2>
+    <form method="post" action="{% url 'api_generate_token' %}">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="button" onclick=login()>Login</button>
+    </form>
+    <script>
+    // Esta funcion recibe el username del form, redirecciona y le crea sus tokens.
+        async function login() {
+            // Obtiene el valor del campo de nombre de usuario
+            var username = document.getElementById('username').value;
+    
+            // Redirige a la URL deseada con el nombre de usuario como parte de la misma
+            window.location.href = '/pacientes/' + encodeURIComponent(username);
+    
+            // Llama a la API para generar tokens
+            const response = await fetch('{% url "api_generate_token" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: document.getElementById('password').value,
+                }),
+            });
+    
+            if (response.ok) {
+                // Procesa la respuesta de la API (si es necesario)
+                const responseData = await response.json();
+                console.log('Tokens generados:', responseData);
+            } else {
+                console.error('Error al generar tokens');
+            }
+        }
+    </script>
+</body>
+</html>
